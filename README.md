@@ -1,2 +1,3 @@
 # linux
-Learning linux
+Learning linux commands and bash scripting
+```
