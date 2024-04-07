@@ -132,6 +132,7 @@ rwx -> Read, Write, Execute
 - **$**: Matches the end of a line.
     - List all files ending with the word file.
   > ls file$
+
 ````text
 > touch abc{1..5}.txt   # Create files abc1.txt, abc2.txt, abc3.txt, abc4.txt, and abc5.txt.
 > ls abc?.txt           # List files abc1.txt, abc2.txt, abc3.txt, abc4.txt, and abc5.txt.
@@ -141,7 +142,6 @@ rwx -> Read, Write, Execute
 > ls abc{1..3}.txt      # List files abc1.txt, abc2.txt, and abc3.txt.
 ````
 
-
 ### Soft Links and Hard Links
 
 - **Soft Link**: A symbolic link that points to another file or directory.
@@ -150,8 +150,8 @@ rwx -> Read, Write, Execute
     - **ln**: Create a link to a file.
   > ln file1 file2
 
-
 ### File display and Manipulation
+
 - **echo**: Display a line of text.
 - **cat**: Concatenate files and print on the standard output.
 - **less**: View file contents one page at a time.
@@ -185,28 +185,8 @@ rwx -> Read, Write, Execute
 > uniq file.txt                         # remove repeated lines from file.txt
 ````
 
-### Filter and Text Processing
-- **grep**: Search for text in files.
-- **sort**: Sort lines of text files.
-- **uniq**: Report or omit repeated lines.
-- **wc**: Print newline, word, and byte counts for each file.
-- **cut**: Remove sections from each line of files.
-- **sed**: Stream editor for filtering and transforming text.
-- **awk**: Pattern scanning and processing language.
-
-````text
-> grep "pattern" file.txt               # search for 'pattern' in file.txt
-> grep -i "pattern" file.txt            # search for 'pattern' case-insensitively
-> grep -r "pattern" directory/          # search for 'pattern' recursively in directory
-> sort file.txt                         # sort the contents of file.txt
-> uniq file.txt                         # remove repeated lines from file.txt
-> wc file.txt                           # count lines, words, and bytes in file.txt
-> cut -d " " -f 1 file.txt              # remove sections from each line of file.txt
-> sed 's/old/new/g' file.txt            # replace 'old' with 'new' in file.txt
-> awk '{print $1}' file.txt             # print the first column of file.txt
-````
-
 ### File Compression and Archiving
+
 - **tar**: Tape archive.
     - **c**: Create a new archive.
     - **x**: Extract files from an archive.
@@ -215,13 +195,53 @@ rwx -> Read, Write, Execute
     - **j**: Compress the archive with bzip2.
     - **v**: Verbose output.
     - **f**: Specify the archive file.
+
 ````text
-  > tar -czvf archive.tar.gz file1 file2
-  > tar -xzvf archive.tar.gz
-  > tar -tvf archive.tar.gz
-  > tar -cjvf archive.tar.bz2 file1 file2
-  > tar -xjvf archive.tar.bz2 
-  > tar -tvf archive.tar.bz2
-  > tar -cvf archive.tar file1 file2
+  > tar -czvf archive.tar.gz file1 file2    # create archive.tar.gz with file1 and file2
+  > tar -xzvf archive.tar.gz                # extract archive.tar.gz
+  > tar -tvf archive.tar.gz                 # list the contents of archive.tar.gz
+  > tar -cjvf archive.tar.bz2 file1 file2   # create archive.tar.bz2 with file1 and file2
+  > tar -xjvf archive.tar.bz2               # extract archive.tar.bz2
+  > tar -tvf archive.tar.bz2                # list the contents of archive.tar.bz2
+  > tar -cvf archive.tar file1 file2        # create archive.tar with file1 and file2
 ````
-  
+
+- **gzip**: Compress files.
+    - **d**: Decompress files.
+
+````text
+  > gzip file.txt                   # compress file.txt
+  > gunzip file.txt.gz              # decompress file.txt.gz  
+  > gzip -d file.txt.gz             # decompress file.txt.gz
+````
+
+- **zip**: Compress files.
+    - **r**: Recursively compress files in directories.
+    - **d**: Delete files after compression.
+
+````text
+  > zip archive.zip file1 file2     # compress file1 and file2 into archive.zip
+  > unzip archive.zip               # decompress archive.zip
+  > zip -r archive.zip directory    # compress files in directory into archive.zip
+````
+
+### Truncate Files
+
+- **truncate**: Shrink or extend the size of a file to the specified size.
+
+````text
+  > truncate -s 1K file.txt         # shrink file.txt to 1KB
+  > truncate -s 1M file.txt         # shrink file.txt to 1MB
+  > truncate -s 0 file.txt          # empty file.txt
+````
+
+### Split and Combine Files
+
+- **split**: Split a file into smaller files.
+    - **b**: Specify the size of the split files.
+    - **l**: Specify the number of lines per split file.
+
+````text
+  > split -b 1M file.txt            # split file.txt into 1MB parts
+  > split -l 100 file.txt           # split file.txt into parts with 100 lines each
+````
